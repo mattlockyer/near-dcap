@@ -4,18 +4,12 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 const { accountId, REACT_APP_contractId: contractId } = process.env;
 import * as nearAPI from 'near-api-js';
-const { KeyPair } = nearAPI;
-const dropKeyPair = KeyPair.fromString(
-    'ed25519:4Da461pSxbSX8pc8L2SiQMwgHJJBYEovMVp7XgZRZLVbf1sk8pu139ie89MftYEQBJtN5dLc349FPXgUyBBE1mp1',
-);
 
 import {
     getAccount,
     contractView,
     contractCall,
     keyPair,
-    keyStore,
-    networkId,
 } from './near-provider.js';
 
 // tests
@@ -62,6 +56,20 @@ test('init contract', async (t) => {
             owner_id: accountId,
         },
     });
+
+    t.pass();
+});
+
+test('call verify', async (t) => {
+    const res = await contractCall({
+        contractId,
+        methodName: 'verify_quote',
+        args: {
+            hash: 'foo',
+        },
+    });
+
+    console.log(res);
 
     t.pass();
 });
