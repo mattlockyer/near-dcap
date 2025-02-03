@@ -60,6 +60,20 @@ test('init contract', async (t) => {
     t.pass();
 });
 
+test('register tee', async (t) => {
+    const res = await contractCall({
+        contractId,
+        methodName: 'verify_quote',
+        args: {
+            hash: 'foo',
+        },
+    });
+
+    console.log(res);
+
+    t.pass();
+});
+
 test('call verify', async (t) => {
     const res = await contractCall({
         contractId,
