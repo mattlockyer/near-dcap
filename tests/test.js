@@ -12,6 +12,8 @@ import {
     keyPair,
 } from './near-provider.js';
 
+import { quote_hex, collateral } from '../samples/sample.js';
+
 // tests
 
 // delete the contract account to clear storage state and re-run tests
@@ -60,12 +62,15 @@ test('init contract', async (t) => {
     t.pass();
 });
 
-test('register tee', async (t) => {
+test('call verify_quote with external data', async (t) => {
     const res = await contractCall({
         contractId,
         methodName: 'verify_quote',
         args: {
-            hash: 'foo',
+            quote_hex,
+            collateral: JSON.stringify(collateral),
+            checksum: 'foo',
+            image_hash: 'bar',
         },
     });
 
@@ -74,12 +79,12 @@ test('register tee', async (t) => {
     t.pass();
 });
 
-test('call verify', async (t) => {
-    const res = await contractCall({
+test('call get_tee', async (t) => {
+    const res = await contractView({
         contractId,
-        methodName: 'verify_quote',
+        methodName: 'get_tee',
         args: {
-            hash: 'foo',
+            account_id: accountId,
         },
     });
 

@@ -386,12 +386,11 @@ dependencies = [
 [[package]]
 name = "dcap-qvl"
 version = "0.2.1"
-source = "git+https://github.com/mattlockyer/dcap-qvl#116504f05114301b34f2c8c439b6d66124917db4"
+source = "git+https://github.com/mattlockyer/dcap-qvl#76481eddf85fe5af1ff25fdb95cdfaff2fe08281"
 dependencies = [
  "anyhow",
  "asn1_der",
  "base64 0.22.1",
- "borsh",
  "byteorder",
  "chrono",
  "const-oid",

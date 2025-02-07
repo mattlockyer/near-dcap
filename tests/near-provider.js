@@ -36,6 +36,7 @@ export const contractView = async ({
     args = {},
 }) => {
     const account = getAccount(accountId);
+
     let res;
     try {
         res = await account.viewFunction({
